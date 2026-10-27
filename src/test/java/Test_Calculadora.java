@@ -29,4 +29,12 @@ public class Test_Calculadora {
         assertEquals("Number expected but EOF found.", calc.add("1,3\n"));
     }
 
+    @Test
+    void debeSoportarDelimitadorPersonalizado() {
+        Calculadora calc = new Calculadora();
+        assertEquals("3", calc.add("//;\n1;2"));
+        assertEquals("6", calc.add("//|\n1|2|3"));
+        assertEquals("5", calc.add("//sep\n2sep3"));
+    }
+
 }

@@ -4,7 +4,11 @@ public class Calculadora {
             return "0";
         }
 
-        // Refactor: cambiamos el split para aceptar comas o saltos de linea
+        // Nueva regla de validación EOF
+        if (numbers.endsWith(",") || numbers.endsWith("\n")) {
+            return "Number expected but EOF found.";
+        }
+
         String[] trozos = numbers.split(",|\n");
         int suma = 0;
 

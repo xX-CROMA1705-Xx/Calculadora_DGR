@@ -22,4 +22,11 @@ public class Test_Calculadora {
         assertEquals("6", calc.add("1\n2,3"));
     }
 
+    @Test
+    void debeDarErrorConFinalInesperado() {
+        Calculadora calc = new Calculadora();
+        assertEquals("Number expected but EOF found.", calc.add("1,3,"));
+        assertEquals("Number expected but EOF found.", calc.add("1,3\n"));
+    }
+
 }

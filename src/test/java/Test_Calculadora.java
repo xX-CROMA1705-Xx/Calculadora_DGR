@@ -16,4 +16,10 @@ public class Test_Calculadora {
         assertEquals("15", calc.add("1,2,3,4,5"));
     }
 
+    @Test
+    void debeSoportarSaltosDeLinea() {
+        Calculadora calc = new Calculadora();
+        assertEquals("6", calc.add("1\n2,3"));
+    }
+
 }

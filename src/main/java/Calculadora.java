@@ -4,7 +4,8 @@ public class Calculadora {
             return "0";
         }
 
-        String[] trozos = numbers.split(",");
+        // Refactor: cambiamos el split para aceptar comas o saltos de linea
+        String[] trozos = numbers.split(",|\n");
         int suma = 0;
 
         for (int i = 0; i < trozos.length; i++) {

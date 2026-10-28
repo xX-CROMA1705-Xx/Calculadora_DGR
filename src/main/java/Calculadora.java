@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Calculadora {
     public String add(String numbers) {
         if (numbers == null || numbers.isEmpty()) {
@@ -7,7 +9,6 @@ public class Calculadora {
         String delimitador = ",|\n";
         String numerosACortar = numbers;
 
-        // Lógica de delimitadores personalizados
         if (numbers.startsWith("//")) {
             int finCabecera = numbers.indexOf("\n");
             String delimitadorPersonalizado = numbers.substring(2, finCabecera);
@@ -15,21 +16,34 @@ public class Calculadora {
             numerosACortar = numbers.substring(finCabecera + 1);
         }
 
-        // Actualizamos la validación EOF con la nueva variable
         if (numerosACortar.endsWith(",") || numerosACortar.endsWith("\n") ||
                 (numbers.startsWith("//") && numerosACortar.endsWith(numbers.substring(2, numbers.indexOf("\n"))))) {
             return "Number expected but EOF found.";
         }
 
         String[] trozos = numerosACortar.split(delimitador);
+
         int suma = 0;
+        List<String> negativos = new ArrayList<>(); // Nueva lista para negativos
 
         for (int i = 0; i < trozos.length; i++) {
             String trozoLimpio = trozos[i].trim();
             if (!trozoLimpio.isEmpty()) {
-                suma += Integer.parseInt(trozoLimpio);
+                int numero = Integer.parseInt(trozoLimpio);
+
+                if (numero < 0) {
+                    negativos.add(String.valueOf(numero));
+                }
+
+                suma += numero;
             }
         }
+
+        // Lanzar error si hay negativos
+        if (!negativos.isEmpty()) {
+            return "Negative not allowed : " + String.join(", ", negativos);
+        }
+
         return String.valueOf(suma);
     }
 }

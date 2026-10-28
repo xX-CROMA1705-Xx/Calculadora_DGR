@@ -37,4 +37,16 @@ public class Test_Calculadora {
         assertEquals("5", calc.add("//sep\n2sep3"));
     }
 
+    @Test
+    void debeDarErrorConUnNumeroNegativo() {
+        Calculadora calc = new Calculadora();
+        assertEquals("Negative not allowed : -1", calc.add("-1,2"));
+    }
+
+    @Test
+    void debeDarErrorMostrandoTodosLosNegativos() {
+        Calculadora calc = new Calculadora();
+        assertEquals("Negative not allowed : -4, -5", calc.add("2,-4,-5"));
+    }
+
 }

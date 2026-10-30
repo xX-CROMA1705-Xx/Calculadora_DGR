@@ -9,6 +9,11 @@ public class Copier {
 
     public void copy() {
         String texto = source.read();
-        destination.write(texto);
+
+        // Mientras el origen nos siga dando texto (no sea null), seguimos copiando
+        while (texto != null) {
+            destination.write(texto);
+            texto = source.read(); // Leemos el siguiente
+        }
     }
 }
